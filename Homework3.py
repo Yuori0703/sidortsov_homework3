@@ -1,40 +1,37 @@
+# Yuori Sidortsou
+# Date: 04/03/2024
+# Description: Homework3
+# Gomel IT Academy Python 3.11.5
+
 # Задача 1
 
-#Дан список чисел. Посчитайте, сколько в нем пар элементов, равных друг другу.
-#Считается, что любые два элемента, равные друг другу образуют одну пару, которую необходимо посчитать.
-#Входные данные - строка из чисел, разделенная пробелами.
-#Выходные данные - количество пар.
-#Важно: `1 1 1` - это 3 пары, `1 1 1 1` - это 6 пар.
-numbers_string = input("Введите строку разделенную пробелами:")
+# Дан список чисел. Посчитайте, сколько в нем пар элементов, равных друг другу.
+# Считается, что любые два элемента, равные друг другу образуют одну пару, которую необходимо посчитать.
+# Входные данные - строка из чисел, разделенная пробелами.
+# Выходные данные - количество пар.
+# Важно: `1 1 1` - это 3 пары, `1 1 1 1` - это 6 пар.
+import re
 def pairs(numbers_string):
     pairs = 0
-    numbers_string = (numbers_string.split())
-    numbers_string.sort()
-    for i in range(len(numbers_string)):
+    numbers_string = (numbers_string.split()) # преообрзуем строку в список
+    numbers_string.sort() # сортируем список
+    for i in range(len(numbers_string)): # запускаем вложенный цикл для поиска одинаковых элементов
         for j in range(i + 1, len(numbers_string)):
-            if numbers_string[i] == numbers_string[j]:
-                pairs += 1
+            if numbers_string[i] == numbers_string[j]: # проверяем, что элементы равны
+                pairs += 1 # если равны прибавляем к pairs 1
     return pairs
-pairs(numbers_string)
 
 # Задача 2
 
 #Дан список. Выведите те его элементы, которые встречаются в списке только один раз.
 #Элементы нужно выводить в том порядке, в котором они встречаются в списке.
-array = [str(i).strip() for i in input("Введите элементы списка:").split()]
+
 def uniques(array):
-    array_ = []
-    for i in range(len(array)):
-        one = array[0]
-        if array[i] not in array_:
-            array_.append(array[i])
-    for i in range(1, len(array)):
-        if one == array[i]:
-            array_.pop(0)
-            break
-    uniques = array_
-    return uniques
-uniques(array)
+    el_count = {} # создаем пустой словарь для хранения элементов
+    for el in array:
+        el_count[el] = el_count.get(el, 0) + 1 # заполняем словарь
+        array = [key for key, value in el_count.items() if value == 1] # выводим элементы которые встречаются только 1 раз
+    return array
 
 # Задача 3
 
@@ -43,49 +40,40 @@ uniques(array)
 # дополнительный список использовать нельзя, задачу нужно выполнить за один проход по списку.
 # Верните полученный список.
 # Задача не проходит тест. Такой вариант решения мог бы быть, но всего с одним исправлением - item == 0 (см ответы)
-array = [int(i) for i in input("Введите элементы списка:").split()]
+
 def ordered_list(array):
-    for i in range(len(array)):
-        if array[i]==0:
-            array.append(array[i])
-            array.pop(i)
-            print(array)
+    for i in range(len(array)): # перебираем список по длине
+        if array[i] == 0: # проверяем на 0 элемент списка
+            array.append(array[i]) # если он равен нулю, добавляем в конец списка
+            array.pop(i) # удаляем елемент равный нулю
     return array
-ordered_list(array)
 
 # Задача 4
 
 #Возмите кортеж `('a', 'b', 'c')`, И сделайте из него список.
-in_tuple = tuple(input("Введите значения кортежа:"))
+
 def tuple_to_list(in_tuple):
-    print(in_tuple)
-    lst = []
-    lst = list(in_tuple)
+    lst = [] # создаем пустой список
+    lst = list(in_tuple) # преобразуем список в кортеж
     return lst
-tuple_to_list(in_tuple)
 
 # Задача 5
 
 #Даны два натуральных числа. Вычислите их наибольший общий делитель при помощи алгоритма Евклида (мы не знаем функции и рекурсию). can't call itself
 
-a = int(input("Введите число а:"))
-b = int(input("Введите число b:"))
 def euclid(a,b):
-    if a == 0 and b != 0:
-        del_= 0
-        del_f = b
-    elif a != 0 and b == 0:
-        del_=0
-        del_f = a
-    elif a > b:
-        del_ = b
-    elif b > a:
-        del_ = a
-    for i in range(1, del_ + 1):
-        if (a % i == 0) and (b % i == 0):
-            del_f = i
-    return del_f
-euclid(a,b)
+    if a == 0 and b != 0: # проверяем условие a == 0 and b != 0
+        del_gen = b # в таком случае b наибольший общий делитель
+    elif a != 0 and b == 0:  # проверяем условие a == 0 and b != 0
+        del_gen = a # в таком случае b наибольший общий делитель
+    if a > b: # проверяем условие a > b
+        del_sm= b # в таком случае b делитель
+    elif b > a: # проверяем условие b > a
+        del_sm= a # в таком случае а делитель
+    for i in range(1, del_sm + 1):
+        if (a % i == 0) and (b % i == 0): # проверяем условие, когда целочисленный остаток от деления 2 целых чисел а и b станет 0 
+            del_gen = i # вычисляем наибольший общий делитель
+    return del_gen
 
 # Задача 6
 
@@ -113,26 +101,39 @@ euclid(a,b)
     #input_string = "2\nRussia Moscow Petersburg Novgorod Kaluga\nUkraine Kiev Donetsk Odessa\n3\nOdessa\nMoscow\nNovgorod"
     #output_string = 'Ukraine\nRussia\nRussia'
     #country_map={}
-    
-input_string = int(input("Введите количество стран: "))
+
 def cities(input_string):
-    N = input_string
-    country_map = {}
-    citylist = []
+    lst = input_string.split("\n")
     output_string = ""
-    output_string = str(output_string)
-    for i in range(N):
-        country_city = input("Введите страну и ее города: ").split()
-        country_map[country_city[0]] = country_city[1:]
-    M = int(input("Введите количество городов: "))
-    for j in range(M):
-         citylist.append(input('Введите список городов: '))
-    for city in citylist:
-        for key in country_map: 
-            if city in country_map[key]:
-                output_string = output_string + key + "\n"
-    return str(output_string)
-cities(input_string)
+    country_city = [] # создаем пустой список стран и городов
+    city_list = [] # создаем пустой список для городов
+    country_map = {} # создаем пустой словарь городов и стран
+    N = int(lst[0]) # получаем количество стран из строки
+    for i in range(1, N + 1): # получаем список стран и городов из строки
+        country_city.append(lst[i])
+    for i in country_city: # запускаем цикл для итерации по списку стран и городов
+        str_ = i.split() 
+        country_map[str_[0]] = str_[1:]  # присваиваем стране- ключу значения городов
+        M = int(lst[N+1]) # получаем количество запрошенных городов из строки
+    for i in range(N+2, len(lst)): # получаем города из строки
+        city_list.append(lst[i])
+    count_end = 0 # создаем переменную для подсчета последнего города
+    for city in city_list: # проходим циклом по списку городов
+        count = 0 # создаем переменную для подсчета городов в нескольких странах
+        count_end += 1 # прибавляем 1 для 1 города
+        count_map = 0 # создаем переменную для подсчета последнего города
+        for key in country_map: # запускаем цикл для поиска города в стране
+            count_map += 1 # прибавляем 1 для 1 страны
+            if city in country_map[key] and count == 0 and len(city_list) != count_end:
+                output_string = output_string + key # прооверяем условие находится ли город в словаре страны
+                count+=1 #прибавляем 1 для подсчета городов в нескольких странах
+            elif city in country_map[key] and count > 0 : 
+                output_string = output_string + " " + key #проверяем условие что город находится в стране и count>0
+            elif city in country_map[key] and  len(city_list) == count_end: 
+                output_string = output_string + key  #проверяем условие что город находится в списке стран, длина списка городов = последнему городу в списке
+            if count_map == len(country_map) and len(city_list) != count_end:
+                output_string = output_string + "\n" #проверяем условие длина словаря стран- городов = count_map а длина списка городов != последнему городу в списке
+    return output_string 
 
 # Задача 7
  
@@ -159,62 +160,63 @@ cities(input_string)
     #Затем - количество языков, которые знает хотя бы один школьник, на следующих строках - список таких языков.
     #input_string = "3\n2\nRussian\nEnglish\n3\nRussian\nBelarusian\nEnglish\n3\nRussian\nItalian\nFrench"
     #output_string = '1\nRussian\n5\nRussian\nFrench\nItalian\nEnglish\nBelarusian'
-input_string = int(input("Введите количество школьников:"))
-lst_set = []
+
+
+
+
 def languages(input_string):
-    N = input_string
-    for i in range(1, N+1):
-        lang_set = set()
-        M = int(input(f"Количество языков которые знает {i}  школьник:"))
-        for j in range(1, M+1):
-            lang_set.add(str(input(f"Введите {j} язык {i} школьника :")))
-        lst_set.append(lang_set)
-    all_stud = set.intersection(*lst_set) #языки которые знают все ученики
-    one_stud = set.union(*lst_set) # языки которые знает хотя бы одинученик
-    print("Количество языков, которые знают все школьники", len(all_stud))
-    all_stud = str(all_stud).strip("{}")
-    print("Список таких языков", all_stud)
-    print("Количество языков, которые знает хотя бы один школьник", len(one_stud))
-    one_stud = str(all_stud).strip("{}")
-    print("Список таких языков", one_stud)
-    a = str(len(all_stud))
-    b = str(len(one_stud))
-    return a + "\n" + all_stud + "\n" + b + "\n" + one_stud
-languages(input_string)
+    list_word = re.findall(r'[a-zA-Z]+', input_string) #используем регулярные выражения для извлечения симаолов из входных данных
+    list_nums = re.findall(r'\d+', input_string) #используем регулярные выражения для извлечения числовых значений из входных данных
+    list_nums = [int(i) for i in list_nums] #приводим с помощью генератора списков числовые значения к типу int
+    N = int(list_nums[0]) # получаем количество школьников из входной строки
+    lst_set = [] # создаем пустой список для хранения множеств
+    count = 0 # создаем переменную со значением 0, для хранения количества языков из входных данных
+    list_nums.pop(0)# удаляем 1 элемент списка list_nums, присвоенный количеству школьников
+    for i in range(0, N):# проходим циклом по количеству школьников
+        lang_set = set() #создаем пустое множество для хранения языков N-го школьника
+        Mi = list_nums[i] # Mi присваиваем значение количества языков N-го школьника
+        for j in range(Mi): # проходим циклом по количеству языков каждого школьника
+            lang_set.add(list_word[count]) # добавляем каждый язык из списка list_word во множество
+            count+=1 # прибавляем к count 1, для итерирования по списку list_word
+        lst_set.append(lang_set)# добавляем множество lang_set в список lst_set
+    all_stud = set.intersection(*lst_set) #языки которые знают все ученики, находим с помощью пересечения множеств
+    num_all_stud = len(all_stud) #Количество языков, которые знают все школьники, находим длину
+    one_stud = set.union(*lst_set) # языки которые знает хотя бы один ученик, находим с помощью объединения множеств
+    num_one_stud = len(one_stud) # Количество языков, которые знает хотя бы один школьник, находим длину
+    all_stud = "\n".join(all_stud) # используем join для преобразования в строку all_stud
+    one_stud = "\n".join(one_stud) # используем join для преобразования в строку one_stud
+    # суммируем выходные данные в строку output_string
+    output_string = str(num_all_stud) + "\n" + all_stud + "\n" + str(num_one_stud) + "\n" + one_stud
+    return output_string
 
 # Задача 8
 
 #Generators
     #Генераторы списков
     #Используйте генератор списков чтобы получить следующий: ['xy', 'xz', 'xv', 'yy', 'yz', 'yv']. из ['x','y'] & ['y','z','v']
-arr1 = list(str(input("Введите элементы списка:")).split()) 
-arr2 = list(str(input("Введите элементы списка:")).split()) 
+
 def list_gen(arr1, arr2):
-    result = [(i+j) for i in arr1 for j in arr2]
+    result = [(i+j) for i in arr1 for j in arr2] # создаем переменную result в которую вносим рузультат выполнения генератора
     return result
-list_gen(arr1, arr2)
 
 # Задача 9
 
-#Генераторы словарей
-#Создайте словарь с помощью генератора словарей, так чтобы его ключами были числа от 1 до N, а значениями кубы этих чисел.
+# Генераторы словарей
+# Создайте словарь с помощью генератора словарей, так чтобы его ключами были числа от 1 до N, а значениями кубы этих чисел.
 
-N = int(input("Введите максимальное значение ключа словаря:"))
 def dict_gen(N):
-    result = {int(el): el**3 for el in range(1, N + 1)}
-    print(result)
+    result = {int(el): el**3 for el in range(1, N + 1)} # создаем генератор словарей, с возведением N в куб
     return result
-dict_gen(N)
 
 # Задача 10
 
 #Кортежи
 #Создайте генератор, который возвращает строки таблицы умножения от 0 до заданного числа.
 
-N = int(input("Введите заданное число:"))
-def multiplication_table(N):
-    nums, table = [[f'{i*j}\t' for i in range(1, N+1)]  for j in range(1, N+1)], "" 
-    for line in nums: table += ''.join(line) + '\n'
-    print(table)
-    return str(table)
-multiplication_table(N)
+# def multiplication_table(N):
+#     nums, tabl = [[f'{x*y}' for x in range(0, N + 1)] for y in range(0, N + 1)], ''
+#     for line in nums: tabl += ','.join(line) + "\n"
+#     print(tabl)
+#     return tabl
+    
+
