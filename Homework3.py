@@ -10,6 +10,7 @@
 # Входные данные - строка из чисел, разделенная пробелами.
 # Выходные данные - количество пар.
 # Важно: `1 1 1` - это 3 пары, `1 1 1 1` - это 6 пар.
+
 import re
 def pairs(numbers_string):
     pairs = 0
@@ -213,10 +214,12 @@ def dict_gen(N):
 #Кортежи
 #Создайте генератор, который возвращает строки таблицы умножения от 0 до заданного числа.
 
-# def multiplication_table(N):
-#     nums, tabl = [[f'{x*y}' for x in range(0, N + 1)] for y in range(0, N + 1)], ''
-#     for line in nums: tabl += ','.join(line) + "\n"
-#     print(tabl)
-#     return tabl
+def multiplication_table(N):
+    if N == 0: # условия для вывода 1 элемента 
+        table = 0
+    else:
+        table = ''.join([''.join([f'{x*y}' for x in range(N + 1)])+'\n' for y in range(N + 1)]) 
+    return table
+
     
 
