@@ -104,8 +104,8 @@ def euclid(a,b):
     #country_map={}
 
 def cities(input_string):
-    lst = input_string.split("\n")
-    output_string = ""
+    lst = input_string.split("\n") # преобразуем входную строку в список
+    output_string = ""  # создаем пустую строку для выходных данных
     country_city = [] # создаем пустой список стран и городов
     city_list = [] # создаем пустой список для городов
     country_map = {} # создаем пустой словарь городов и стран
@@ -215,11 +215,12 @@ def dict_gen(N):
 #Создайте генератор, который возвращает строки таблицы умножения от 0 до заданного числа.
 
 def multiplication_table(N):
-    if N == 0: # условия для вывода 1 элемента 
-        table = 0
-    else:
-        table = ''.join([''.join([f'{x*y}' for x in range(N + 1)])+'\n' for y in range(N + 1)]) 
-    return table
+    for i in range(N + 1): # создаем цикл для итерирования от 0 до N+1 
+        row = "" # создаем пустую строку
+        for j in range(N + 1):# создаем вложенный цикл для итерирования от 0 до N+1 
+            row += str(i * j) + " "# прибавляем при каждой итерации к строке row str(i * j) + " "
+        yield row[ : -1] # возвращаем значение строки с помощью среза
+
 
     
 
