@@ -21,6 +21,7 @@ def pairs(numbers_string):
             if numbers_string[i] == numbers_string[j]: # проверяем, что элементы равны
                 pairs += 1 # если равны прибавляем к pairs 1
     return pairs
+    # Все верно, можно решить сильно проще - см ответы
 
 # Задача 2
 
@@ -33,6 +34,7 @@ def uniques(array):
         el_count[el] = el_count.get(el, 0) + 1 # заполняем словарь
         array = [key for key, value in el_count.items() if value == 1] # выводим элементы которые встречаются только 1 раз
     return array
+    # Все верно, можно решить сильно проще - см ответы
 
 # Задача 3
 
@@ -48,6 +50,7 @@ def ordered_list(array):
             array.append(array[i]) # если он равен нулю, добавляем в конец списка
             array.pop(i) # удаляем елемент равный нулю
     return array
+    # Все верно
 
 # Задача 4
 
@@ -57,6 +60,7 @@ def tuple_to_list(in_tuple):
     lst = [] # создаем пустой список
     lst = list(in_tuple) # преобразуем список в кортеж
     return lst
+    # Можно не создавать пустой список, а сразу преобразовать переданный список
 
 # Задача 5
 
@@ -75,6 +79,7 @@ def euclid(a,b):
         if (a % i == 0) and (b % i == 0): # проверяем условие, когда целочисленный остаток от деления 2 целых чисел а и b станет 0 
             del_gen = i # вычисляем наибольший общий делитель
     return del_gen
+    # Тут сильно усложнено, можно решить очень просто - см ответы
 
 # Задача 6
 
@@ -135,6 +140,7 @@ def cities(input_string):
             if count_map == len(country_map) and len(city_list) != count_end:
                 output_string = output_string + "\n" #проверяем условие длина словаря стран- городов = count_map а длина списка городов != последнему городу в списке
     return output_string 
+    # Тут окей
 
 # Задача 7
  
@@ -189,7 +195,8 @@ def languages(input_string):
     # суммируем выходные данные в строку output_string
     output_string = str(num_all_stud) + "\n" + all_stud + "\n" + str(num_one_stud) + "\n" + one_stud
     return output_string
-
+    # Тут окей
+    # Комментарии не очень читаемые, лучше их писать через строку
 # Задача 8
 
 #Generators
@@ -220,6 +227,8 @@ def multiplication_table(N):
         for j in range(N + 1):# создаем вложенный цикл для итерирования от 0 до N+1 
             row += str(i * j) + " "# прибавляем при каждой итерации к строке row str(i * j) + " "
         yield row[ : -1] # возвращаем значение строки с помощью среза
+
+# Решение верное, но задача добавлена после дедлайна
 
 
     
